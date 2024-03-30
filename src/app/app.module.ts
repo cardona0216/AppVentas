@@ -9,11 +9,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './Reutilizable/shared/shared.module';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    LayoutComponent
+    LayoutComponent,
+   
   ],
   imports: [
     BrowserModule,

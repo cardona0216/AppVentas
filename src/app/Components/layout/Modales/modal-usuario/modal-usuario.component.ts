@@ -17,7 +17,7 @@ import { UtilidadService } from 'src/app/Reutilizable/utilidad.service';
   styleUrls: ['./modal-usuario.component.css']
 })
 export class ModalUsuarioComponent implements OnInit {
-  
+
 formularioUsuario:FormGroup;
 ocultarPassword:boolean = true;
 tituloAccion:string ='Agregar';
@@ -37,7 +37,7 @@ listaRoles:Rol[] = [];
       correo:['',Validators.required],
       idRol:['',Validators.required],
       clave:['',Validators.required],
-      esActivo:['1',Validators.required],
+      esActivo:[1,Validators.required],
     });
     if (this.datosUsuario!= null) {
       this.tituloAccion = 'Editar';
@@ -74,7 +74,7 @@ listaRoles:Rol[] = [];
       idRol:this.formularioUsuario.value.idRol,
       rolDescription: "",
       clave: this.formularioUsuario.value.clave,
-      esActivo:parseInt(this.formularioUsuario.value.clave)
+      esActivo:parseInt(this.formularioUsuario.value.esActivo)
     }
 
     if (this.datosUsuario == null) {
