@@ -44,6 +44,8 @@ listaCategorias:Categoria[] = [];
 
     this._categoriaServicio.lista().subscribe({
       next:(data) =>{
+        console.log(data);
+        
         if (data.status) this.listaCategorias = data.value
       },
       error:(e) =>{
@@ -83,7 +85,7 @@ listaCategorias:Categoria[] = [];
             this._utilidadServicio.mostrarAlerta("El producto fue registrado","Exito");
             this.modalActual.close("true")
           }else
-            this._utilidadServicio.mostrarAlerta("no se pudo registar el usuario", "Error")
+            this._utilidadServicio.mostrarAlerta("no se pudo registar el producto", "Error")
                
           
         },
