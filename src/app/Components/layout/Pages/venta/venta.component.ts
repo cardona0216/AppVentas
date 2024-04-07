@@ -31,7 +31,7 @@ export class VentaComponent implements OnInit {
   bloquearBotonRegistrar:boolean = false
 
   productoSeleccionado!:Producto;
-  tipoPagoPorDefecto:string = 'Efectivo';
+  tipoPagoPorDefecto:string ='Efectivo';
   totalPagar:number = 0;
 
   formularioProductoVenta!:FormGroup;
@@ -60,11 +60,11 @@ export class VentaComponent implements OnInit {
         next:(data) =>{
           if (data.status) {
             const lista = data.value as Producto[];
-            this.listaProductos = lista.filter(p => p.esActivo ==1 && p.stock > 0)
+            this.listaProductos = lista.filter(p => p.esActivo == 1 && p.stock > 0);
           }
         },
         error:(e) =>{
-  
+
         }
       })
 
@@ -110,13 +110,15 @@ export class VentaComponent implements OnInit {
 
 
   eliminarProducto(detalle:DetalleVenta){
-    this.totalPagar = this.totalPagar
-    this.listaProductoVenta = this.listaProductoVenta.filter(p => p.idProducto!= detalle.idProducto)
+    this.totalPagar = this.totalPagar-parseFloat(detalle.totalTexto)
+    this.listaProductoVenta = this.listaProductoVenta.filter(p => p.idProducto != detalle.idProducto)
     this.detalleVenta = new MatTableDataSource(this.listaProductoVenta);
   }
 
   registarVenta(){
     if (this.listaProductoVenta.length > 0) {
+      console.log(this.listaProductoVenta);
+
       this.bloquearBotonRegistrar = true;
 
       const request:Venta = {
@@ -124,6 +126,8 @@ export class VentaComponent implements OnInit {
         totalTexto: String(this.totalPagar.toFixed(2)),
         detalleVenta:this.listaProductoVenta
       }
+      console.log(request);
+      
 
       this._ventaServicio.registrar(request).subscribe({
         next:(response) => {
@@ -146,7 +150,7 @@ export class VentaComponent implements OnInit {
         },
         error:(e) => {
           console.log(e);
-          
+
         }
       })
     }

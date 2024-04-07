@@ -1,7 +1,8 @@
 export interface DetalleVenta {
     idProducto:number,
-    descripcionProducto:string,
+    descripcionProducto?:string,
     cantidad:number,
     precioTexto:string,
-    totalTexto:string
+    totalTexto:string,
+    
 }
